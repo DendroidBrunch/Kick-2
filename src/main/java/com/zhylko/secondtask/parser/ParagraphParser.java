@@ -1,0 +1,19 @@
+package com.zhylko.secondtask.parser;
+
+import com.zhylko.secondtask.entity.TextElementComposite;
+import com.zhylko.secondtask.entity.TextElementType;
+
+public class ParagraphParser extends TextAbstractParser{
+	private static final String PARAGRAPH_TO_SENTENCE_REGEX = "(?<=[.!?])\\s+";
+	
+	@Override
+	public TextElementComposite parseElement(String paragraph) {
+		TextElementComposite result = new TextElementComposite(TextElementType.PARAGRAPH);
+		String[] sentences = paragraph.split(PARAGRAPH_TO_SENTENCE_REGEX);
+		for(String sentence : sentences) {
+			TextElementComposite sentenceComposite = nextParser.parseElement(sentence);
+			result.addComponent(sentenceComposite);
+		}
+		return result;
+	}
+}
