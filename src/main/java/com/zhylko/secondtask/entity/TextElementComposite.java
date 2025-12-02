@@ -36,11 +36,27 @@ public class TextElementComposite extends TextElement{
 	}
 	
 	@Override
-	public String show() {
+  public String toString() {
 		StringBuilder builder = new StringBuilder();
+    for (int i = 0; i < components.size(); i++) {
+      TextElement component = components.get(i);
+      builder.append(component.toString());
+      TextElementType elementType = component.getElementType();
+      if ((elementType == TextElementType.SENTENCE || elementType == TextElementType.LEXEME) && i < components.size() - 1) {
+        builder.append(" ");
+      } else if (elementType == TextElementType.PARAGRAPH && i < components.size() - 1) {
+        builder.append("\t");
+      }
+    }
+    return builder.toString();
+  }
+
+	@Override
+	public int count() {
+		int result = 0;
 		for(TextElement component : components) {
-			builder.append(component.toString());
+			result += component.count();
 		}
-		return builder.toString();
+		return result;
 	}
 }

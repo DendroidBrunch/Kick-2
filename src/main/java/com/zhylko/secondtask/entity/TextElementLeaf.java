@@ -9,7 +9,17 @@ public class TextElementLeaf extends TextElement{
 	}
 	
 	@Override
-	public String show() {
+	public int count() {
+		int result = 0;
+		TextElementType elementType = this.getElementType();
+		if(elementType == TextElementType.SYMBOL) {
+			result = 1;
+		}
+		return result;
+	}
+	
+	@Override
+	public String toString() {
 		return String.valueOf(leaf);
 	}
 }

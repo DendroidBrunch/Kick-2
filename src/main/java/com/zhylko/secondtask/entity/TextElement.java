@@ -15,5 +15,5 @@ public abstract class TextElement {
 		this.elementType = elementType;  
 	}
 	
-	public abstract String show();
+	public abstract int count();
 }
