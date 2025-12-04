@@ -11,6 +11,7 @@ public class SentenceParser extends TextAbstractParser{
 		TextElementComposite result = new TextElementComposite(TextElementType.SENTENCE);
 		String[] lexemes = sentence.split(SENTENCE_TO_LEXEMES_REGEX);
 		for(String lexeme : lexemes) {
+			TextAbstractParser nextParser = this.getNextParser();
 			TextElementComposite lexemeComposite = nextParser.parseElement(lexeme);
 			result.addComponent(lexemeComposite);
 		}

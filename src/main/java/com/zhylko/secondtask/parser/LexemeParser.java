@@ -17,6 +17,7 @@ public class LexemeParser extends TextAbstractParser{
 				TextElementLeaf punctuation = new TextElementLeaf(TextElementType.PUNCTUATION, component.charAt(0));
 				result.addComponent(punctuation);
 			} else {
+				TextAbstractParser nextParser = this.getNextParser();
 				TextElementComposite wordComposite = nextParser.parseElement(component);
 				result.addComponent(wordComposite);
 			}

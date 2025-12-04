@@ -11,6 +11,7 @@ public class ParagraphParser extends TextAbstractParser{
 		TextElementComposite result = new TextElementComposite(TextElementType.PARAGRAPH);
 		String[] sentences = paragraph.split(PARAGRAPH_TO_SENTENCES_REGEX);
 		for(String sentence : sentences) {
+			TextAbstractParser nextParser = this.getNextParser();
 			TextElementComposite sentenceComposite = nextParser.parseElement(sentence);
 			result.addComponent(sentenceComposite);
 		}

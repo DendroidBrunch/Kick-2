@@ -7,6 +7,10 @@ import com.zhylko.secondtask.exception.TextCompositeException;
 
 public class TextElementComposite extends TextElement{
 
+	private static final String LEXEME_APPENDER = " ";
+	private static final String SENTENCE_APPENDER = " ";
+	private static final String PARAGRAPH_APPENDER = "\n";
+	
 	List<TextElement> components = new ArrayList<>();
 	
 	public TextElementComposite(TextElementType elementType) {
@@ -42,10 +46,13 @@ public class TextElementComposite extends TextElement{
       TextElement component = components.get(i);
       builder.append(component.toString());
       TextElementType elementType = component.getElementType();
-      if ((elementType == TextElementType.SENTENCE || elementType == TextElementType.LEXEME) && i < components.size() - 1) {
-        builder.append(" ");
-      } else if (elementType == TextElementType.PARAGRAPH && i < components.size() - 1) {
-        builder.append("\t");
+      if(i < components.size() - 1) {
+      	switch (elementType) {
+	      	case TextElementType.SENTENCE: builder.append(SENTENCE_APPENDER); break;
+	      	case TextElementType.LEXEME: builder.append(LEXEME_APPENDER); break;
+	      	case TextElementType.PARAGRAPH: builder.append(PARAGRAPH_APPENDER); break;
+	      	default: break;
+      	}
       }
     }
     return builder.toString();

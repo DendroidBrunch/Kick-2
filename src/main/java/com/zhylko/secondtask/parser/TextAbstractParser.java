@@ -3,13 +3,13 @@ package com.zhylko.secondtask.parser;
 import com.zhylko.secondtask.entity.TextElementComposite;
 
 public abstract class TextAbstractParser {
-	TextAbstractParser nextParser;
+	private TextAbstractParser nextParser;
 	
 	public void setNextParser(TextAbstractParser nextParser) { 
 		this.nextParser = nextParser;
 	}
 	
-	public TextAbstractParser getNextPAaser() {
+	public TextAbstractParser getNextParser() {
 		return nextParser;
 	}
 	
